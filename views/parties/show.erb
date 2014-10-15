@@ -4,12 +4,43 @@
 
 <h2>Table No: <%= @party.table_num %>, Number of Guests: <%= @party.guests %>, Payment Complete: <%= @party.payment_complete %></h2>
 
+<p>Order(s):</p>
+
+<ul>
+<% @party.orders.each do |order| %>
+		<li>
+      <%= order.food.name %>, $<%= order.food.price %>
+      <form action="/orders/<%= order.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="party_id" value="<%= @party.id %>">
+        <input type="submit" value="Remove Item">
+      </form>
+    </li>
+	
+<% end %>
+</ul>
+
+<% @foods.each do |food| %>
+	<form action="/orders" method="post">
+	  <input type="hidden" name="party_id" value="<%= @party.id %>">
+	  <input type="hidden" name="food_id" value="<%= food.id %>">
+	  <input type="submit" value="<%= food.name %>">
+	</form>
+<% end %>
+
+<p>
+	<form action="/parties/<%= @party.id %>" method="post">
+		<input type="hidden" name="party_id" value="<%= @party.id %>">
+		<input type="text" name="food_name" placeholder="Menu Item">
+		<input type="submit">
+	</form>
+</p>
+
 <ul>
 	<li>
 		<a href="/parties/<%= @party.id %>/edit"><button type="button">Edit</button></a>
 	</li>
-
-		<li>
+	<li>
 		<form action="/parties/<%= @party.id %>" method="post">
 			<input type="hidden" name="_method" value="delete">
 			<input type="submit" value="Delete Party">
