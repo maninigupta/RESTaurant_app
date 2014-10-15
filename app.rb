@@ -24,8 +24,13 @@ get '/foods/new' do
 end
 
 post '/foods' do
-  Food.create(params[:food])
-  redirect '/foods'
+  food = Food.create(params[:food])
+  if food.valid?
+    redirect '/foods'
+  else
+    @errors = food.errors.full_messages
+    erb :'foods/new'
+  end
 end
 
 get '/foods/:id' do
@@ -112,3 +117,7 @@ delete '/orders/:id' do
   Order.destroy(params[:id])
   redirect "/parties/#{params[:party_id]}"
 end
+
+# receipts!
+
+# List of food, cost, total at bottom
