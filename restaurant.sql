@@ -19,6 +19,6 @@ payment_complete boolean
 
 CREATE TABLE orders (
 id SERIAL PRIMARY KEY,
-foods_id INTEGER,
-parties_id INTEGER
+food_id INTEGER,
+party_id INTEGER
 );
