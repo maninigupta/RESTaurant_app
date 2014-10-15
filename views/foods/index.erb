@@ -14,7 +14,7 @@
 		<tr>
 			<td><%=food.id %></td>
 			<td><%= food.course %></td>
-			<td><%= food.name %></td>
+			<td><a href="/foods/<%= food.id %>"><%= food.name %></a></td>
 			<td>$<%= food.price %></td>
 			<td><%= food.any_allergens %></td>
 		</tr>
