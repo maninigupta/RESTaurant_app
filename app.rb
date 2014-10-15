@@ -19,7 +19,7 @@ get '/foods/new' do
 	erb :'foods/new'
 end
 
-post '/foods/' do
+post '/foods' do
 	Food.create(params[:food])
 	redirect '/foods'
 end
@@ -30,7 +30,7 @@ get '/foods/:id' do
 end
 
 get '/foods/:id/edit' do
-	@food = Food.find(params[:edit])
+	@food = Food.find(params[:id])
 	erb :'foods/edit'
 end
 
@@ -41,49 +41,50 @@ patch '/foods/:id' do
 	food.course = params[:food][:course]
 	food.any_allergens = params[:food][:any_allergens]
 	food.save
-	redirect '/foods/:id'
-end
-
-delete '/foods/:id' do
-	Food.delete(params[:id])
 	redirect '/foods'
 end
 
-get '/parties' do
-	@parties = Party.all
-	erb :'parties/index'
+delete '/foods/:id' do
+	food = Food.find(params[:id])
+	food.destroy
+	redirect '/foods'
 end
 
-get '/parties/new' do
-	erb :'parties/new'
-end
+# get '/parties' do
+# 	@parties = Party.all
+# 	erb :'parties/index'
+# end
 
-post '/parties' do
-	Party.create(params[:party])
-	redirect '/parties'
-end
+# get '/parties/new' do
+# 	erb :'parties/new'
+# end
 
-get '/parties/:id' do
-	@party = Party.find(params[:id])
-	erb :'parties/show'
-end
+# post '/parties' do
+# 	Party.create(params[:party])
+# 	redirect '/parties'
+# end
 
-get '/parties/:id/edit' do
-	@party = Party.find(params[:id])
-	erb :'parties/edit'
-end
+# get '/parties/:id' do
+# 	@party = Party.find(params[:id])
+# 	erb :'parties/show'
+# end
 
-patch '/parties/:id' do
-	party = Party.find(params[:id])
-	party.table_num = params[:party][:table_num]
-	party.guests = params[:party][:guests]
-	party.payment_complete = params[:party][:payment_complete]
-	party.save
-	redirect '/parties/:id'
-end
+# get '/parties/:id/edit' do
+# 	@party = Party.find(params[:id])
+# 	erb :'parties/edit'
+# end
 
-delete '/parties/:id' do
-	Party.delete(params[:id])
-	redirect '/parties'
-end
-end
+# patch '/parties/:id' do
+# 	party = Party.find(params[:id])
+# 	party.table_num = params[:party][:table_num]
+# 	party.guests = params[:party][:guests]
+# 	party.payment_complete = params[:party][:payment_complete]
+# 	party.save
+# 	redirect '/parties/:id'
+# end
+
+# delete '/parties/:id' do
+# 	Party.delete(params[:id])
+# 	redirect '/parties'
+# end
+# end
