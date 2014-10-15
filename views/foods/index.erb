@@ -9,14 +9,14 @@
 		<th>Price</th>
 		<th>Allergens?</th>
 	</thead>
-	<% @foods.each do |food| %>
+	<% @foods.each do |food_item| %>
 	<body>
 		<tr>
-			<td><%=food.id %></td>
-			<td><%= food.course %></td>
-			<td><a href="/foods/<%= food.id %>"><%= food.name %></a></td>
-			<td>$<%= food.price %></td>
-			<td><%= food.any_allergens %></td>
+			<td><%=food_item.id %></td>
+			<td><%= food_item.course %></td>
+			<td><a href="/foods/<%= food_item.id %>/edit"><%= food_item.name %></a></td>
+			<td>$<%= food_item.price %></td>
+			<td><%= food_item.any_allergens %></td>
 		</tr>
 	</body>
 	<% end %>	
