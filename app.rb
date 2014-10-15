@@ -50,41 +50,40 @@ delete '/foods/:id' do
 	redirect '/foods'
 end
 
-# get '/parties' do
-# 	@parties = Party.all
-# 	erb :'parties/index'
-# end
+get '/parties' do
+	@parties = Party.all
+	erb :'parties/index'
+end
 
-# get '/parties/new' do
-# 	erb :'parties/new'
-# end
+get '/parties/new' do
+	erb :'parties/new'
+end
 
-# post '/parties' do
-# 	Party.create(params[:party])
-# 	redirect '/parties'
-# end
+post '/parties' do
+	Party.create(params[:party])
+	redirect '/parties'
+end
 
-# get '/parties/:id' do
-# 	@party = Party.find(params[:id])
-# 	erb :'parties/show'
-# end
+get '/parties/:id' do
+ 	Party.find(params[:id])
+	erb :'parties/show'
+end
 
-# get '/parties/:id/edit' do
-# 	@party = Party.find(params[:id])
-# 	erb :'parties/edit'
-# end
+get '/parties/:id/edit' do
+	@party = Party.find(params[:id])
+	erb :'parties/edit'
+end
 
-# patch '/parties/:id' do
-# 	party = Party.find(params[:id])
-# 	party.table_num = params[:party][:table_num]
-# 	party.guests = params[:party][:guests]
-# 	party.payment_complete = params[:party][:payment_complete]
-# 	party.save
-# 	redirect '/parties/:id'
-# end
+patch '/parties/:id' do
+	party = Party.find(params[:id])
+	party.table_num = params[:party][:table_num]
+	party.guests = params[:party][:guests]
+	party.payment_complete = params[:party][:payment_complete]
+	party.save
+	redirect '/parties/:id'
+end
 
-# delete '/parties/:id' do
-# 	Party.delete(params[:id])
-# 	redirect '/parties'
-# end
-# end
+delete '/parties/:id' do
+	Party.delete(params[:id])
+	redirect '/parties'
+end

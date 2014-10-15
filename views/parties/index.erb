@@ -1,0 +1,21 @@
+<h1>Parties</h1>
+<h3><a href="/parties/new">Add New Party</a></h3>
+
+<table cellpadding="10">
+	<thead>
+		<th>ID</th>
+		<th>Table No</th>
+		<th>Guests</th>
+		<th>Payment Complete?</th>
+	</thead>
+	<% @parties.each do |party| %>
+	<body>
+		<tr>
+			<td><%= party.id %></td>
+			<td><a href="/parties/<%= party.id %>"><%= party.table_num %></td>
+			<td><%= party.guests %></a></td>
+			<td><%= party.payment_complete %></td>
+		</tr>
+	</body>
+	<% end %>	
+</table>
