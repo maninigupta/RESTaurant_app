@@ -1,0 +1,18 @@
+<h4><a href="/foods">Back to Menu</a></h4>
+
+<h1>Menu Item:</h1>
+
+<h2><%= @food.name %></h2>
+
+<ul>
+	<li>
+		<a href="/foods/<%= @food.id %>/edit"><button type="button">Edit</button></a>
+	</li>
+
+		<li>
+		<form action="/foods/<%= @food.id %>" method="post">
+			<input type="hidden" name="_method" value="delete">
+			<input type="submit" button type="button" value="Delete from Menu">
+		</form>
+	</li>
+</ul>
