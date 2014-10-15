@@ -1,19 +1,23 @@
 <h1>Menu</h1>
 <h3><a href="/foods/new">Add New Item</a></h3>
 
-<table>
-	<th>ID</th>
-	<th>Course</th>
-	<th>Item</th>
-	<th>Price</th>
-	<th>Allergens?</th>
+<table cellpadding="10">
+	<thead>
+		<th>ID</th>
+		<th>Course</th>
+		<th>Item</th>
+		<th>Price</th>
+		<th>Allergens?</th>
+	</thead>
+	<% @foods.each do |food| %>
 	<body>
-		<% @foods.each do |food|
-			<td><%= food.id %></td>
+		<tr>
+			<td><%=food.id %></td>
 			<td><%= food.course %></td>
 			<td><%= food.name %></td>
-			<td><%= food.price %></td>
+			<td>$<%= food.price %></td>
 			<td><%= food.any_allergens %></td>
-		<% end %>	
+		</tr>
 	</body>
+	<% end %>	
 </table>
