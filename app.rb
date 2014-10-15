@@ -11,8 +11,7 @@ ActiveRecord::Base.establish_connection({
   })
 
 get '/' do
-  @parties = Party.all
-  erb :index
+  redirect '/parties'
 end
 
 get '/foods' do
