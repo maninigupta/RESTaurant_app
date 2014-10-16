@@ -1,3 +1,16 @@
+<h1>Add a Food to the Menu</h1>
+
+<% if @errors %>
+  <div class="errors">
+    <p>You have <%= @errors.count %><%= @errors.count == 1 ? "ERROR" : "ERRORS" %>.</p>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <form action="/foods" method="post">
 	<input type="text" name="food[course]" placeholder="Course">
 	<input type="text" name="food[name]" placeholder="Item">
