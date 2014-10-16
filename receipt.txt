@@ -1,1 +1,13 @@
-["Chicken Tikka Masala", 16]["Fish Tacos", 10]["Guacamole Platter", 9]["Enchiladas Mole", 13]["Chicken Tikka Masala", 16]["Salad", 12]["Soup", 5]["Salad", 12]
+     Manini's Restaurant      
+
+Enchiladas Mole..........13.00
+Enchiladas Mole..........13.00
+Berries...................7.00
+Berries...................7.00
+
+Subtotal.................40.00
+
+Suggested Tip:
+10% = 44.0
+15% = 46.0
+20% = 48.0

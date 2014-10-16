@@ -4,6 +4,7 @@ Bundler.require
 require './models/food'
 require './models/order'
 require './models/party'
+require './models/receipt'
 
 ActiveRecord::Base.establish_connection({
   adapter: 'postgresql',
@@ -123,19 +124,23 @@ end
 # List of food, cost, total at bottom
 # ====================================
 
-get '/parties/:id/receipts' do
+get '/parties/:id/receipt' do
   @party = Party.find(params[:id])
+  @foods = @party.foods
 
-  file = File.open('receipt.txt', 'w')
-
-  @orders = Order.where(party_id: params[:id])
-  @orders.each do |order|
-    file.write([order.food.name, order.food.price])
+  receipt = Receipt.new(@foods)
+  File.open('receipt.txt', 'w+') do |file|
+    file << receipt.to_s
   end
-file.close
-erb :'parties/receipt'
+  attachment('receipt.txt')
+  File.read('receipt.txt')
+  
 end
 
-get '/parties/:id/receipts/print'
-  attachment 'receipt.txt'
+# get '/parties/:id/receipt'
+#   attachment 'receipt.txt'
+# end
+
+get '/console' do
+  binding.pry
 end
