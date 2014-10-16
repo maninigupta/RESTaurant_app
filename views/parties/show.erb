@@ -4,6 +4,10 @@
 
 <h2>Table No: <%= @party.table_num %>, Number of Guests: <%= @party.guests %>, Payment Complete: <%= @party.payment_complete %></h2>
 
+<form action="/parties/<%= @party.id %>/receipt" method="get">
+  <input type="submit" value="View Receipt">
+</form>
+
 <p>Order(s):</p>
 
 <ul>
