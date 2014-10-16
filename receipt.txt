@@ -1,0 +1,1 @@
+["Chicken Tikka Masala", 16]["Fish Tacos", 10]["Guacamole Platter", 9]["Enchiladas Mole", 13]["Chicken Tikka Masala", 16]["Salad", 12]["Soup", 5]["Salad", 12]

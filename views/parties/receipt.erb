@@ -1,0 +1,24 @@
+<h1>Receipt</h1>
+
+<form action="/parties/<%= @party.id %>" method="post">
+  <input type="hidden" name="party_id" value="<%= @party.id %>">
+</form>
+
+<table cellpadding="5">
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.food.name %></td>
+      <td><%= order.food.price %></td>
+    </tr>
+  <% end %>
+</table>
+
+<% sum = @orders.inject {|sum, order| sum + order.food.price} %>
+
+<p>Total: <%= sum %></p>
+<p>Suggested Gratuity:</p>
+<p>==================================</p>
+<p>Thanks for your patronage!</p>
+<p>==================================</p>
+
+<p>Print Receipt?</p>

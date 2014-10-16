@@ -118,6 +118,24 @@ delete '/orders/:id' do
   redirect "/parties/#{params[:party_id]}"
 end
 
-# receipts!
-
+# ====================================
+# Receipts! 
 # List of food, cost, total at bottom
+# ====================================
+
+get '/parties/:id/receipts' do
+  @party = Party.find(params[:id])
+
+  file = File.open('receipt.txt', 'w')
+
+  @orders = Order.where(party_id: params[:id])
+  @orders.each do |order|
+    file.write([order.food.name, order.food.price])
+  end
+file.close
+erb :'parties/receipt'
+end
+
+get '/parties/:id/receipts/print'
+  attachment 'receipt.txt'
+end
