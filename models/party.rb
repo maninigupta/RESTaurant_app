@@ -8,9 +8,17 @@ class Party < ActiveRecord::Base
     prices.inject(:+)
   end
 
-  # def display_sum
-  #   self.sum
-  #   self.sum.to_s
-  # end
+  def display_sum
+    self.sum
+    self.sum.to_s
+  end
+
+  def display_paid
+    if self.payment_complete == true
+      "YES"
+    else
+      "NO"
+    end
+  end
 
 end
