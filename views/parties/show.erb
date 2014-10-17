@@ -8,21 +8,30 @@
   <input type="submit" value="View Receipt">
 </form>
 
-<p>Order(s):</p>
+<p>Party Order:</p>
 
-<ul>
+<table cellpadding="5">
 <% @party.orders.each do |order| %>
-		<li>
-      <%= order.food.name %>, $<%= order.food.price %>
+	<tr>
+    <td><%= order.food.name %></td>
+    <td>$<%= order.food.price %></td>
+    <td>
       <form action="/orders/<%= order.id %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="party_id" value="<%= @party.id %>">
-        <input type="submit" value="Remove Item">
-      </form>
-    </li>
-	
+      <input type="hidden" name="_method" value="delete">
+      <input type="hidden" name="party_id" value="<%= @party.id %>">
+      <input type="submit" value="Remove Item">
+    </form>
+  </td>
+  </tr>
 <% end %>
-</ul>
+</table>
+
+<form action="/parties/<%= @party.id %>/checkout" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="submit" value="Payment Confirmed">
+</form>
+
+<p>Click Menu Items Below to Create Party Order:</p>
 
 <% @foods.each do |food| %>
 	<form action="/orders" method="post">
@@ -32,17 +41,9 @@
 	</form>
 <% end %>
 
-<p>
-	<form action="/parties/<%= @party.id %>" method="post">
-		<input type="hidden" name="party_id" value="<%= @party.id %>">
-		<input type="text" name="food_name" placeholder="Menu Item">
-		<input type="submit">
-	</form>
-</p>
-
 <ul>
 	<li>
-		<a href="/parties/<%= @party.id %>/edit"><button type="button">Edit</button></a>
+		<a href="/parties/<%= @party.id %>/edit"><button type="button">Edit Party</button></a>
 	</li>
 	<li>
 		<form action="/parties/<%= @party.id %>" method="post">
