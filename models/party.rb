@@ -2,6 +2,15 @@ class Party < ActiveRecord::Base
   has_many(:orders)
   has_many(:foods, :through => :orders)
 
+  class PartyAlreadyPaidError < StandardError
+  end
+
+  def error_if_paid
+    if self.payment_complete == true
+      raise PartyAlreadyPaidError, "*** This party has already paid ***"
+    end
+  end
+
   def sum
     prices = self.foods.map {|food| 
       food.price}

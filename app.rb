@@ -105,13 +105,29 @@ post '/orders' do
   # party = Party.find(params[:party_id])
  #  food = Food.find(params[:food_id])  
   # party.foods << food
+  # if @party.payment_complete == false
 
-  Order.create(
-    party_id: params[:party_id],
-    food_id: params[:food_id]
+  # else
+  #   @errors = order.error.full_messages
+  #   erb :'parties/show'
+  # end
+  @party = Party.find(params[:party_id])
+
+  begin
+    # all the code we're going to try we think might fail
+    @party.error_if_paid
+  rescue Party::PartyAlreadyPaidError => error # what error we want predict and react to
+    # What to do if the error comes
+    @error = error
+    @foods = Food.all
+    erb :'parties/show'
+  else
+    Order.create(
+      party_id: params[:party_id],
+      food_id: params[:food_id]
     )
-
-  redirect "/parties/#{params[:party_id]}"
+    redirect "/parties/#{params[:party_id]}"
+  end
 end
 
 delete '/orders/:id' do

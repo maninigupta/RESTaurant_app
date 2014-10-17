@@ -1,8 +1,10 @@
-<h4><a href="/parties">Back to Parties</a></h4>
+<h1>These Mates</h1>
 
-<h1>Party</h1>
+<h2>Table No: <%= @party.table_num %> &nbsp;&nbsp;&nbsp;Number of Guests: <%= @party.guests %> &nbsp;&nbsp;&nbsp;Payment Complete: <%= @party.display_paid %></h2>
 
-<h2>Table No: <%= @party.table_num %>, Number of Guests: <%= @party.guests %>, Payment Complete: <%= @party.payment_complete %></h2>
+<% if @error %>
+  <p><%= @error.message %></p>
+<% end %>
 
 <form action="/parties/<%= @party.id %>/receipt" method="get">
   <input type="submit" value="View Receipt">
@@ -31,7 +33,7 @@
   <input type="submit" value="Payment Confirmed">
 </form>
 
-<p>Click Menu Items Below to Create Party Order:</p>
+<p>Click to Add Grub to Party Order:</p>
 
 <% @foods.each do |food| %>
 	<form action="/orders" method="post">
@@ -42,9 +44,9 @@
 <% end %>
 
 <ul>
-	<li>
-		<a href="/parties/<%= @party.id %>/edit"><button type="button">Edit Party</button></a>
-	</li>
+	<li id="party_edit">
+		<a class="test" href="/parties/<%= @party.id %>/edit">Edit Party</a>
+	</li><br><br>
 	<li>
 		<form action="/parties/<%= @party.id %>" method="post">
 			<input type="hidden" name="_method" value="delete">
