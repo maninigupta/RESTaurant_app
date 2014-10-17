@@ -12,7 +12,7 @@ ActiveRecord::Base.establish_connection({
   })
 
 get '/' do
-  redirect '/parties'
+  erb :index
 end
 
 get '/foods' do
@@ -137,9 +137,12 @@ get '/parties/:id/receipt' do
   
 end
 
-# get '/parties/:id/receipt'
-#   attachment 'receipt.txt'
-# end
+patch '/parties/:id/checkout' do
+  party = Party.find(params[:id])
+  party.payment_complete = true
+  party.save
+  redirect "/parties/#{party.id}"
+end
 
 get '/console' do
   binding.pry
