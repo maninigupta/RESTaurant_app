@@ -145,12 +145,15 @@ get '/parties/:id/receipt' do
   @foods = @party.foods
 
   receipt = Receipt.new(@foods)
-  File.open('receipt.txt', 'w+') do |file|
-    file << receipt.to_s
+  if @party.foods != []
+    File.open('receipt.txt', 'w+') do |file|
+      file << receipt.to_s
+    end
+    attachment('receipt.txt')
+    File.read('receipt.txt')
+  else
+    redirect "/parties/#{@party.id}"
   end
-  attachment('receipt.txt')
-  File.read('receipt.txt')
-  
 end
 
 patch '/parties/:id/checkout' do
