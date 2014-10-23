@@ -5,11 +5,25 @@ require './models/food'
 require './models/order'
 require './models/party'
 require './models/receipt'
+require './helpers/link_helper'
+require './helpers/form_helper'
 
-ActiveRecord::Base.establish_connection({
-  adapter: 'postgresql',
-  database: 'restaurant_db'
-  })
+helpers ActiveSupport::Inflector
+
+enable :sessions
+
+require './connection'
+
+# helpers do
+#   def say_hello(name)
+#     "Hello, #{name}"
+#   end
+
+#   def link_to(url, body)
+#     "<a href='#{url}'>#{body}</a>"
+#   end
+# end
+
 
 get '/' do
   erb :index
