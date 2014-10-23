@@ -1,3 +1,6 @@
+<h2><%= @food.name %></h2>
+
+<% if false %>
 <form action="/foods/<%= @food.id %>" method="post">
 	<input type="hidden" name="_method" value="patch">
 	<input type="text" name="food[course]" value="<%= @food.course %>">
@@ -6,3 +9,7 @@
 	<input type="text" name="food[any_allergens]" value="<%= @food.any_allergens %>">
 	<input type="submit">
 </form>
+<% end %>
+
+<%= form_open(@food, method: 'patch') %>
+<%= erb :'foods/_form', :locals => {food: @food} %>

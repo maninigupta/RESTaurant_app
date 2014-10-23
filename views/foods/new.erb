@@ -11,6 +11,7 @@
   </div>
 <% end %>
 
+<% if false  %>
 <form action="/foods" method="post">
 	<input type="text" name="food[course]" placeholder="Course">
 	<input type="text" name="food[name]" placeholder="Item">
@@ -18,5 +19,9 @@
 	<input type="text" name="food[any_allergens]" placeholder="Allergens?">
 	<input type="submit" value="Add New Food!">
 </form>
+<% end %>
 
 <a href="/foods"><button type="button">Cancel</button></a>
+
+<%= form_open(Food.new) %>
+<%= erb :'foods/_form', :locals => {food: Food.new} %>
