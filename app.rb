@@ -32,9 +32,10 @@ end
 get '/foods' do
   @foods = Food.all
   erb :'foods/index'
-end 
+end
 
 get '/foods/new' do
+  @food = Food.new
   erb :'foods/new'
 end
 
@@ -63,7 +64,6 @@ patch '/foods/:id' do
   food.name = params[:food][:name]
   food.price = params[:food][:price]
   food.course = params[:food][:course]
-  food.any_allergens = params[:food][:any_allergens]
   food.save
   redirect '/foods'
 end
@@ -117,7 +117,7 @@ end
 
 post '/orders' do
   # party = Party.find(params[:party_id])
- #  food = Food.find(params[:food_id])  
+ #  food = Food.find(params[:food_id])
   # party.foods << food
   # if @party.payment_complete == false
 
@@ -150,7 +150,7 @@ delete '/orders/:id' do
 end
 
 # ====================================
-# Receipts! 
+# Receipts!
 # List of food, cost, total at bottom
 # ====================================
 
