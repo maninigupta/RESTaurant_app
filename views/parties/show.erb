@@ -3,7 +3,7 @@
 <h2>Table No: <%= @party.table_num %> &nbsp;&nbsp;&nbsp;Number of Guests: <%= @party.guests %> &nbsp;&nbsp;&nbsp;Payment Complete: <%= @party.display_paid %></h2>
 
 <% if @error %>
-  <p><%= @error.message %></p>
+<p><%= @error.message %></p>
 <% end %>
 
 <form action="/parties/<%= @party.id %>/receipt" method="get">
@@ -13,19 +13,19 @@
 <p>Party Order:</p>
 
 <table cellpadding="5">
-<% @party.orders.each do |order| %>
-	<tr>
+  <% @party.orders.each do |order| %>
+  <tr>
     <td><%= order.food.name %></td>
     <td>$<%= order.food.price %></td>
     <td>
       <form action="/orders/<%= order.id %>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <input type="hidden" name="party_id" value="<%= @party.id %>">
-      <input type="submit" value="Remove Item">
-    </form>
-  </td>
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="party_id" value="<%= @party.id %>">
+        <input type="submit" value="Remove Item">
+      </form>
+    </td>
   </tr>
-<% end %>
+  <% end %>
 </table>
 
 <form action="/parties/<%= @party.id %>/checkout" method="post">
@@ -36,21 +36,19 @@
 <p>Click to Add Grub to Party Order:</p>
 
 <% @foods.each do |food| %>
-	<form action="/orders" method="post">
-	  <input type="hidden" name="party_id" value="<%= @party.id %>">
-	  <input type="hidden" name="food_id" value="<%= food.id %>">
-	  <input type="submit" value="<%= food.name %>">
-	</form>
+<form action="/orders" method="post">
+ <input type="hidden" name="party_id" value="<%= @party.id %>">
+ <input type="hidden" name="food_id" value="<%= food.id %>">
+ <input type="submit" value="<%= food.name %>">
+</form>
 <% end %>
 
-<ul>
-	<li id="party_edit">
-		<a class="test" href="/parties/<%= @party.id %>/edit">Edit Party</a>
-	</li><br><br>
-	<li>
-		<form action="/parties/<%= @party.id %>" method="post">
-			<input type="hidden" name="_method" value="delete">
-			<input type="submit" value="Delete Party">
-		</form>
-	</li>
-</ul>
+<div class="party-edit">
+  <a class="test" href="/parties/<%= @party.id %>/edit">Edit Party</a>
+</div>
+<div class='party-delete'>
+  <form action="/parties/<%= @party.id %>" method="post">
+   <input type="hidden" name="_method" value="delete">
+   <input type="submit" value="Delete Party">
+ </form>
+</div>

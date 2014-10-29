@@ -76,6 +76,7 @@ input[value="Payment Confirmed"] {
 
 input[value="Delete Party"] {
   padding: 10px;
+  margin-top: 25px;
   background-color: #d6240d;
   background-image: url(http://www.transparenttextures.com/patterns/3px-tile.png);
   font-size: 16px;
@@ -92,7 +93,11 @@ input:hover {
   cursor: pointer;
 }
 
-#party_edit a {
+.party-edit {
+  margin-top: 25px;
+}
+
+.party-edit a {
   display: inline;
   list-style-type: none;
   padding: 10px;

@@ -1,13 +1,12 @@
      Manini's Restaurant      
 
-Enchiladas Mole..........13.00
-Enchiladas Mole..........13.00
-Berries...................7.00
-Berries...................7.00
+Mac & Cheese.............14.00
+Steak....................40.00
+Kale Salad...............35.00
 
-Subtotal.................40.00
+Subtotal.................89.00
 
 Suggested Tip:
-10% = 44.0
-15% = 46.0
-20% = 48.0
+Total + 10% = 97.90
+Total + 15% = 102.35
+Total + 20% = 106.80
