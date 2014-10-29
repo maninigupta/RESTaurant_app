@@ -6,7 +6,7 @@ module Sinatra
         method = options[:method]
       else
         # form_open(Party.new)
-        record.persisted? 'get' : 'post'
+        method = record.persisted? ? 'get' : 'post'
       end
       action = resource_index_path(record.class.to_s.downcase)
       open_form_tag(action, method, record)
@@ -17,7 +17,7 @@ module Sinatra
       str = ""
       if ['delete', 'patch', 'put'].include?(method)
         str << "<form action='#{full_action}' method='post'>"
-        str << "input type='hidden' name='_method' value='#{method}'"
+        str << "<input type='hidden' name='_method' value='#{method}'>"
       else
         str << "<form action='#{full_action}' method='#{method}'>"
       end
